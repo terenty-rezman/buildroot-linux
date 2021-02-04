@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# set new fonts
+gunzip -c /usr/share/consolefonts/ter-powerline-v20b.psf.gz | loadfont
