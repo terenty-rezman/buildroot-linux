@@ -12,8 +12,9 @@ set -e # terminate script on error
 # img size in mb
 IMG_SIZE=30
 IMG_NAME=linux.img
-KERNEL_IMG=bzImage
-INITRD_IMG=rootfs.cpio
+IMAGE_DIR=./buildroot/output/images
+KERNEL_IMG=$IMAGE_DIR/bzImage
+INITRD_IMG=$IMAGE_DIR/rootfs.cpio
 
 # create zeroed file
 dd if=/dev/zero of="$IMG_NAME" bs=1024k count=$IMG_SIZE
