@@ -1,0 +1,16 @@
+alias ll='ls -l'
+
+RED="\e[91m"
+GREEN="\e[92m"
+NORMAL="\e[39m"
+
+case `id -u` in
+  0) COLOR="$RED";;
+  *) COLOR="$GREEN";;
+esac
+
+PS1="${COLOR}$USER ${NORMAL}\w ${COLOR}# $NORMAL"
+
+unset RED
+unset GREEN
+unset NORMAL

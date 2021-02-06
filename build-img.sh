@@ -4,6 +4,7 @@
 # places kernel image and initrd image on this disk 
 # and uses grub install to make it bootable
 # then you can test it with smthng like 'qemu-system-x86_64 linux.img'
+# or you can write it to usb flash drive with smthing like 'dd if=/linux.img of=/dev/sdb' to make usb flash bootable
 
 echo
 
@@ -11,20 +12,20 @@ set -e # terminate script on error
 
 # img size in mb
 IMG_SIZE=30
-IMG_NAME=linux.img
+OUTPUT_IMG_NAME=linux.img
 IMAGE_DIR=./buildroot/output/images
 KERNEL_IMG=$IMAGE_DIR/bzImage
 INITRD_IMG=$IMAGE_DIR/rootfs.cpio
 
 # create zeroed file
-dd if=/dev/zero of="$IMG_NAME" bs=1024k count=$IMG_SIZE
+dd if=/dev/zero of="$OUTPUT_IMG_NAME" bs=1024k count=$IMG_SIZE
 echo
 
 # now map out file on pseudo device to work with it as if it was a hdd
 # also store the device name into variable
 # need sudo for losetup
 echo need sudo for 'losetup':
-PSEUDO_HDD=$(sudo losetup --find --show "$IMG_NAME")
+PSEUDO_HDD=$(sudo losetup --find --show "$OUTPUT_IMG_NAME")
 echo device created: $PSEUDO_HDD
 echo
 
